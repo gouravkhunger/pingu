@@ -12,6 +12,6 @@ Whenever the sender's ID equals the a particular id(which is to be entered in `<
 
 This project uses JDA(Java Discord API), which can be found here: https://github.com/DV8FromTheWorld/JDA.
 
-This is a grade app, and the code was written in IntelliJ IDEA community edition :)
+This is a gradle app, and the code was written in IntelliJ IDEA community edition :)
 
 To get started with making you own basic discord bots with JAVA, you may look into this very well explained article https://medium.com/discord-bots/making-a-basic-discord-bot-with-java-834949008c2b.
