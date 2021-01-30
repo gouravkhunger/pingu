@@ -1,0 +1,2 @@
+# pingu
+Discord Ping Bot
