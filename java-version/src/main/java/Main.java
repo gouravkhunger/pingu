@@ -17,7 +17,7 @@ public class Main extends ListenerAdapter {
         // Enable the bulk delete event
         builder.setBulkDeleteSplittingEnabled(false);
         // Set activity (like "playing Something")
-        builder.setActivity(Activity.watching("future contests to pong you"));
+        builder.setActivity(Activity.watching("opportunities to pong you"));
         builder.addEventListeners(new Main());
         builder.build();
 
@@ -28,7 +28,7 @@ public class Main extends ListenerAdapter {
 
         User author = event.getAuthor();
         if (event.getChannel().getId().equals("<channel ID for pinging>") && author.getId().equals("<person's/bot's ID>")) {
-            event.getChannel().sendMessage(("@everyone")).queue();
+            event.getChannel().sendMessage(("@everyone ^_^")).queue();
         }
     }
 
