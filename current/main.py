@@ -41,7 +41,7 @@ class MyClient(discord.Client):
 
         # Pingu likes complements
         elif 'pingu' in message.content.lower() and ('good' in message.content.lower() or 'god' in message.content.lower() or 'best' in message.content.lower() or 'op' in message.content.lower()):
-                await message.channel.send("Who doesn't know that <:smug:817030149279055892>")
+                await message.channel.send("Who doesn't know that <:smug:834411396120576060>")
 
         # Don't take pingu's name behind it's back
         elif 'pingu' == message.content.lower():
