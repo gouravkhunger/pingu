@@ -91,4 +91,4 @@ class MyClient(discord.Client):
         #     await message.add_reaction("<:ac:816337894074875984>");
 
 client = MyClient()
-client.run('ODA1MTEwOTU5NzkzMzczMjE0.YBWIAw.xo_rXLT-O5_Z7w-0EY2jKKwzrbg')
+client.run('<bot-token>')
