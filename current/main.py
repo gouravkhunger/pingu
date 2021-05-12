@@ -14,12 +14,38 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
+        # say command:
+        # send a message containing whatever text is provided as text
+        if(message.content.startswith(';pingu')):
+
+            # send code if someone wants it ✨
+            if(message.content.lower() == ";pingu code"):
+                await message.channel.send("Here's the code that makes me live: <https://github.com/GouravKhunger/pingu/edit/main/current/main.py>")
+                return
+
+            #split the content only if it has say command
+            msg = message.content.split('say', 1)
+
+            #pingu should not disturb everyone with ghost pings 😅
+            if('@everyone' in msg[1] or '@here' in msg[1]):
+                await message.channel.send("Refrain from mass pinging <:angeryboye:816339048524283934>")
+                return
+
+            if('<@' in msg[1] and '>' in msg[1]):
+                await message.channel.send("Refrain from pinging anyone <:angeryboye:816339048524283934>")
+                return
+
+            #if the current message does not have any pings, delete the original message
+            # and send it as a message from the bot
+            await message.delete()
+            await message.channel.send(msg[1])
+            return
+
         # react weird to pings to the bot
         mention = f'<@!{client.user.id}>'
         if mention in message.content or client.user.mention in str(message.content.split()):
             await message.channel.send(message.author.mention+" solve some problems or do some work smh, don\'t ping me!")
             await message.channel.send('<:tourist_mad:803325979082752040>')
-            return
 
         # Disjoint Set Union makes pingu angry 😑
         list = message.content.split()
@@ -27,13 +53,11 @@ class MyClient(discord.Client):
             if(list[i].lower() == 'dsu'):
                 await message.add_reaction("<:angeryboye:816339048524283934>");
                 await message.channel.send("F DSU. Don't even take its name <:angeryboye:816339048524283934>")
-                return
 
         # Union Find Disjoin Set makes pingu happy 😃
         for i in range(len(list)):
             if(list[i].lower() == 'ufds'):
                 await message.add_reaction("<:ghosthug:819541321735733259>");
-                return
 
         # Don't try to call pingu a dumbass 😔
         if 'pingu' in message.content.lower() and ('dumb' in message.content.lower() or 'noob' in message.content.lower() or 'bad' in message.content.lower() or 'no gud' in message.content.lower()):
@@ -67,4 +91,4 @@ class MyClient(discord.Client):
         #     await message.add_reaction("<:ac:816337894074875984>");
 
 client = MyClient()
-client.run('<bot-token>')
+client.run('ODA1MTEwOTU5NzkzMzczMjE0.YBWIAw.xo_rXLT-O5_Z7w-0EY2jKKwzrbg')
