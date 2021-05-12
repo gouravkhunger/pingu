@@ -16,11 +16,11 @@ class MyClient(discord.Client):
 
         # say command:
         # send a message containing whatever text is provided as text
-        if(message.content.startswith(';pingu')):
+        if(message.content.startswith(';p')):
 
             # send code if someone wants it ✨
-            if(message.content.lower() == ";pingu code"):
-                await message.channel.send("Here's the code that makes me live: <https://github.com/GouravKhunger/pingu/edit/main/current/main.py>")
+            if(message.content.lower() == ";p code"):
+                await message.channel.send("Here's the code that makes me live: <https://github.com/GouravKhunger/pingu/blob/main/current/main.py>")
                 return
 
             #split the content only if it has say command
