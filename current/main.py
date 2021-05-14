@@ -39,7 +39,7 @@ class MyClient(discord.Client):
                 #if the current message does not have any pings, delete the original message
                 # and send it as a message from the bot
                 await message.delete()
-                await message.channel.send(msg[1])
+                await message.channel.send(msg[1] + " [by " + str(message.author).split('#')[0]+"]")
                 return
 
             # command to delete messages sent by pingu
@@ -103,4 +103,4 @@ class MyClient(discord.Client):
         #     await message.add_reaction("<:ac:816337894074875984>");
 
 client = MyClient()
-client.run('bot-token')
+client.run('<bot-token>')
