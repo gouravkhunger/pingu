@@ -2,8 +2,32 @@
 import discord
 import requests
 import json
+import random
 
 BASE_URL = "https://zenquotes.io/api/random"
+
+
+# The following function selects a language in discord to display the quotes, in discord, different languages have
+# different colours, like cpp would give green colour, java would give red, etc.
+def get_formatted_string(str1, str2):
+
+    # Here, the format is, colors[0] == the name of lang, colours[1] == prefix, colours[2] == suffix.
+    colors = [
+        ["diff", '-', ''],
+        ["css", '{', '}'],
+        ["fix", '', "--"],
+        ["apache", "%{", '}'],
+        ["diff", '+', ''],
+        ["css", '"', '"'],
+        ["bash", '"', '"'],
+        ["json", '"', '"'],
+        ["ini", '[', ']']
+    ]
+
+    rand = random.choice(colors)
+    final_str = "```" + rand[0] + "\n" + rand[1] + str1 + "\n ~" + str2 + rand[2] + "\n ```"
+
+    return final_str
 
 
 class MyClient(discord.Client):
@@ -37,11 +61,7 @@ class MyClient(discord.Client):
                 json = response.json()
                 quote = json[0]['q']
                 q_author = json[0]['a']
-                await channel.send(
-                    quote
-                    + "\n" +
-                    "- " + q_author
-                )
+                await channel.send(get_formatted_string(quote, q_author))
 
         # contest notifications from practice bot
         elif str(channel.id) == "804973113246220309" and str(message.author) == "Practice#2886":
