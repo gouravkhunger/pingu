@@ -25,7 +25,7 @@ def get_formatted_string(str1, str2):
     ]
 
     rand = random.choice(colors)
-    final_str = "```" + rand[0] + "\n" + rand[1] + str1 + "\n ~" + str2 + rand[2] + "\n ```"
+    final_str = "```" + rand[0] + "\n" + rand[1] + str1 + "\n\n~" + str2 + rand[2] + "\n```"
 
     return final_str
 
@@ -69,4 +69,4 @@ class MyClient(discord.Client):
 
 
 client = MyClient()
-client.run('<bot-token>')
+client.run('bot-token')
