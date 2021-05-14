@@ -23,23 +23,36 @@ class MyClient(discord.Client):
                 await message.channel.send("Here's the code that makes me live: <https://github.com/GouravKhunger/pingu/blob/main/current/main.py>")
                 return
 
-            #split the content only if it has say command
-            msg = message.content.split('say', 1)
+            elif("say" in message.content.lower()):
+                #split the content only if it has say command
+                msg = message.content.split('say', 1)
 
-            #pingu should not disturb everyone with ghost pings 😅
-            if('@everyone' in msg[1] or '@here' in msg[1]):
-                await message.channel.send("Refrain from mass pinging <:angeryboye:816339048524283934>")
+                #pingu should not disturb everyone with ghost pings 😅
+                if('@everyone' in msg[1] or '@here' in msg[1]):
+                    await message.channel.send("Refrain from mass pinging <:angeryboye:816339048524283934>")
+                    return
+
+                if('<@' in msg[1] and '>' in msg[1]):
+                    await message.channel.send("Refrain from pinging anyone <:angeryboye:816339048524283934>")
+                    return
+
+                #if the current message does not have any pings, delete the original message
+                # and send it as a message from the bot
+                await message.delete()
+                await message.channel.send(msg[1])
                 return
 
-            if('<@' in msg[1] and '>' in msg[1]):
-                await message.channel.send("Refrain from pinging anyone <:angeryboye:816339048524283934>")
-                return
-
-            #if the current message does not have any pings, delete the original message
-            # and send it as a message from the bot
-            await message.delete()
-            await message.channel.send(msg[1])
-            return
+            # command to delete messages sent by pingu
+            elif(message.content.lower() == ';p delete'):
+                if(message.reference != None):
+                    msg_d = await message.channel.fetch_message(message.reference.message_id)
+                    if(msg_d.author.name == 'pingu'):
+                        await msg_d.delete()
+                        await message.delete()
+                    else:
+                        await message.channel.send("Can't delete messages which I did not send.")
+                else:
+                    await message.channel.send("Please reference one of my messages to be deleted...")
 
         # react weird to pings to the bot
         mention = f'<@!{client.user.id}>'
@@ -73,8 +86,7 @@ class MyClient(discord.Client):
 
         # some random case work
         elif ('anti' not in message.content.lower() and 'dsu' not in message.content.lower()) and ('orz' in message.content.lower() or 'otz' in message.content.lower() or 'ofz' == message.content.lower() or 'OTL' in message.content):
-            #await message.channel.send("<:orz:803321101831766036>")
-            await message.add_reaction("<:orz:803321101831766036>")
+            await message.add_reaction("<:nou:816338682835501056>")
 
         # reactions to messages with certain words
         elif 'geniosity' in message.content.lower() or 'geniosities' in message.content.lower():
@@ -91,4 +103,4 @@ class MyClient(discord.Client):
         #     await message.add_reaction("<:ac:816337894074875984>");
 
 client = MyClient()
-client.run('<bot-token>')
+client.run('bot-token')
