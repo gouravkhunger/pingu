@@ -32,7 +32,7 @@ def get_formatted_string(str1, str2):
 
 class MyClient(discord.Client):
     async def on_ready(self):
-        # print('Logged on as', self.user)
+        print('Logged on as', self.user)
         await client.change_presence(
             activity=discord.Activity(type=discord.ActivityType.watching, name="opportunities to pong you"))
 
@@ -68,5 +68,6 @@ class MyClient(discord.Client):
             await channel.send("<@&807807887375990876> ^_^")
 
 
+# Reminder to self, change the token to <bot-token after pushing>s
 client = MyClient()
 client.run('bot-token')
