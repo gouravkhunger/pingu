@@ -3,9 +3,12 @@ import discord
 import requests
 import json
 import random
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 BASE_URL = "https://zenquotes.io/api/random"
-
 
 # The following function selects a language in discord to display the quotes, in discord, different languages have
 # different colours, like cpp would give green colour, java would give red, etc.
@@ -67,7 +70,5 @@ class MyClient(discord.Client):
         elif str(channel.id) == "804973113246220309" and str(message.author) == "Practice#2886":
             await channel.send("<@&807807887375990876> ^_^")
 
-
-# Reminder to self, change the token to <bot-token after pushing>s
 client = MyClient()
-client.run('bot-token')
+client.run(os.environ.get('BOT_TOKEN'))
